@@ -11,6 +11,7 @@ class ShoppingCart extends Model
     //
     public function productsSize(){
       return $this->id;
+      // return 3;
     }
 
     public static function findOrCreateBySessionID($shopping_cart_id){
