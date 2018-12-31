@@ -23,3 +23,8 @@ Route::get('/products/{id}/edit', 'ProductsController@edit');//obtiene los datos
 Route::patch('/products/{id}', 'ProductsController@update');//actualiza el producto
 Route::delete('/products/{id}', 'ProductsController@destroy');//elimina producto
 Route::get('/products/{id}', 'ProductsController@show');//muestra detalles producto
+Route::get('/carrito','ShoppingCartsController@index');
+
+Route::resource('in_shopping_carts','InShoppingCartsController',[
+  'only' => ['store','destroy']
+]);

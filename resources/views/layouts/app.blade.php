@@ -45,8 +45,8 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                          <a href="#" class="nav-link">
-                            Mi Carrito  <span class="circle-shopping-cart">{{ $shopping_cart->productsSize() }}</span>
+                          <a href="{{url('/carrito')}}" class="nav-link">
+                            Mi Carrito  <span class="circle-shopping-cart">{{ $productsCount }}</span>
                           </a>
                         </li>
                         @guest

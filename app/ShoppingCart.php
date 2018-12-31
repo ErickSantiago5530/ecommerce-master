@@ -9,13 +9,27 @@ class ShoppingCart extends Model
     protected $fillable = ['status'];// todas la variables que esten en esta sesion no podran ser modificadas
 
     //
+    public function inShoppingCarts(){
+        return $this->hasMany("App\InShoppingCart");
+    }
+
+    public function products(){
+      return $this->belongsToMany('App\Product','in_shopping_carts');
+    }
+
     public function productsSize(){
-      return $this->id;
+      // return $this->id;
       // return 3;
+      return $this->products()->count();
+    }
+
+    public function total(){
+      return $this->products()->sum("precio");
     }
 
     public static function findOrCreateBySessionID($shopping_cart_id){
-      if ($shopping_cart_id) {
+      // var_dump(ShoppingCart::createWhithoutSession($shopping_cart_id));die();
+      if ($shopping_cart_id>=1) {
         // buscar carrito de compras con este id
         return ShoppingCart::findBySession($shopping_cart_id);
       }else{
