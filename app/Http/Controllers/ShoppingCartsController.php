@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ShoppingCart;
+use App\PayPal;
 
 class ShoppingCartsController extends Controller
 {
@@ -16,10 +17,15 @@ class ShoppingCartsController extends Controller
     {
       $shopping_cart_id = \Session::get('shopping_cart_id');
       $shopping_cart = ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
-      $products = $shopping_cart->products()->get();
-      $total = ($shopping_cart->total()==="0"||$shopping_cart->total()===0)?"0.00":$shopping_cart->total();
-      // var_dump($total);die();
-      return view("shopping_carts.index",["products"=>$products,"total"=>$total]);
+      $paypal = new PayPal($shopping_cart);
+
+      $payment = $paypal->generate();
+
+      return redirect($payment->getApprovalLink());
+      // $products = $shopping_cart->products()->get();
+      // $total = ($shopping_cart->total()==="0"||$shopping_cart->total()===0)?"0.00":$shopping_cart->total();
+      // // var_dump($total);die();
+      // return view("shopping_carts.index",["products"=>$products,"total"=>$total]);
     }
 
     /**
