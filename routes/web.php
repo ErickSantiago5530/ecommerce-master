@@ -26,6 +26,10 @@ Route::get('/products/{id}', 'ProductsController@show');//muestra detalles produ
 Route::get('/carrito','ShoppingCartsController@index');
 Route::get('/payments/store','PaymentsController@store');
 
+Route::resource('compras','ShoppingCartsController',[
+  'only' => ['show']
+]);
+
 Route::resource('in_shopping_carts','InShoppingCartsController',[
   'only' => ['store','destroy']
 ]);

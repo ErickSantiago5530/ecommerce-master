@@ -10470,6 +10470,14 @@ a.text-dark:focus {
   margin-bottom: 0px;
 }
 
+.top-space {
+  margin-top: 1em;
+}
+
+.creado {
+  background-color: #d4e157;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

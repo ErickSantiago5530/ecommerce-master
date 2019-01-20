@@ -9,16 +9,26 @@ class ShoppingCart extends Model
     protected $fillable = ['status'];// todas la variables que esten en esta sesion no podran ser modificadas
 
     //
-    public function generateCustomID(){
-
+    public function approve(){
+      $this->updateCustomIDandStatus();
     }
 
-    public function updateCustomID(){
-      
+    public function generateCustomID(){
+      return md5("$this->id $this->updated_at");
+    }
+
+    public function updateCustomIDandStatus(){
+      $this->status = "approved";
+      $this->customid = $this->generateCustomID();
+      $this->save();
     }
 
     public function inShoppingCarts(){
         return $this->hasMany("App\InShoppingCart");
+    }
+
+    public function order(){
+      return $this->hasOne("App\Order")->first();
     }
 
     public function products(){
