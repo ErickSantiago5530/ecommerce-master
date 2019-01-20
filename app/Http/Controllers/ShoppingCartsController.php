@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\ShoppingCart;
 use App\PayPal;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderCreated;
+
 class ShoppingCartsController extends Controller
 {
     public function __construct(){
@@ -18,6 +21,8 @@ class ShoppingCartsController extends Controller
      */
     public function index(Request $request)
     {
+
+      Mail::to("santossantiagoerick@gmail.com")->send(new OrderCreated());
       $shopping_cart = $request->shopping_cart;
       // $shopping_cart_id = \Session::get('shopping_cart_id');
       // $shopping_cart = ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
