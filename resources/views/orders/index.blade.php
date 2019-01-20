@@ -35,8 +35,28 @@
                 <td>{{ $order->id }}</td>
                 <td>{{ $order->recipient_name }}</td>
                 <td>{{ $order->address() }}</td>
-                <td>{{ $order->guide_number }}</td>
-                <td>{{ $order->status }}</td>
+                <td>
+                  <a href="#"
+                     data-type="text"
+                     class="set-guide-number"
+                     data-pk="{{ $order->id }}"
+                     data-title="Numero de guia"
+                     data-name="guide_number"
+                     data-value="{{ $order->guide_number}}"
+                     data-url="{{ url("/orders/$order->id") }}">
+                   </a>
+                </td>
+                <td>
+                  <a  href="#"
+                      data-type="select"
+                      data-pk="{{ $order->id }}"
+                      data-title="Numero de guia"
+                      class="select-status"
+                      data-value="{{ $order->status}}"
+                      data-name="status"
+                      data-url="{{ url("/orders/$order->id") }}">
+                    </a>
+                 </td>
                 <td>{{ $order->created_at }}</td>
                 <td>Acciones</td>
               </tr>
