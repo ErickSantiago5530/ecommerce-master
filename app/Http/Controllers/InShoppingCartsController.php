@@ -27,7 +27,9 @@ class InShoppingCartsController extends Controller
 
       // var_dump($response);die();
       if($response){
-        return redirect('/carrito');
+        // return redirect('/carrito');
+        return redirect('/home');
+
       }else{
         return back();
       }

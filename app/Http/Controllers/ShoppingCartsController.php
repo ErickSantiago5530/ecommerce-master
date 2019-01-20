@@ -19,6 +19,7 @@ class ShoppingCartsController extends Controller
       $shopping_cart = ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
       $paypal = new PayPal($shopping_cart);
 
+
       $payment = $paypal->generate();
 
       return redirect($payment->getApprovalLink());

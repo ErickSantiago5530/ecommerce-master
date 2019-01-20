@@ -9,6 +9,14 @@ class ShoppingCart extends Model
     protected $fillable = ['status'];// todas la variables que esten en esta sesion no podran ser modificadas
 
     //
+    public function generateCustomID(){
+
+    }
+
+    public function updateCustomID(){
+      
+    }
+
     public function inShoppingCarts(){
         return $this->hasMany("App\InShoppingCart");
     }
@@ -25,6 +33,10 @@ class ShoppingCart extends Model
 
     public function total(){
       return $this->products()->sum("precio");
+    }
+
+    public function totalUSD(){
+      return $this->products()->sum("precio")/100;
     }
 
     public static function findOrCreateBySessionID($shopping_cart_id){

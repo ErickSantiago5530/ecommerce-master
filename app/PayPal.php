@@ -32,9 +32,7 @@ class PayPal{
       dd($e);
       exit(1);
     }
-
     return $payment;
-
   }
 
   public function payer(){
@@ -42,8 +40,10 @@ class PayPal{
   }
 
   public function redirectURLs(){
-    $baseURL = url('url');
-    return \PaypalPayment::redirectUrls()->setReturnUrl("$baseURL/payements/store")->setCancelUrl("$baseURL/carrito");
+    $baseURL = url('/');
+    return \PaypalPayment::redirectUrls()
+            ->setReturnUrl("$baseURL/payments/store")
+            ->setCancelUrl("$baseURL/carrito");
   }
 
   public function transaction(){
@@ -57,20 +57,25 @@ class PayPal{
   public function items(){
     $items = [];
     $products = $this->shopping_cart->products()->get();
-
     foreach ($products as $product ) {
-      array_push($items,$product->paypalItem());
+      array_push($items,$product->paypalItem($product));
     }
-
     return \PaypalPayment::itemList()->setItems($items);
   }
 
   public function amount(){
     return \PaypalPayment::amount()
             ->setCurrency("USD")//le asignamos el valor en que queremos cobrar
-            ->setTotal($this->shopping_cart->total());
+            ->setTotal($this->shopping_cart->totalUSD());
+            // ->setTotal($this->shopping_cart->total());
   }
 
+  public function execute($paymentId,$payerId){
+    $payment = \PaypalPayment::getById($paymentId,$this->_apiContext);
+    $execution = \PaypalPayment::PaymentExecution()->setPayerId($payerId);
+
+    return $payment->execute($execution,$this->_apiContext);
+  }
 
 }
 

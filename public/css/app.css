@@ -10515,3 +10515,23 @@ a.text-dark:focus {
   border-bottom: solid 1px;
 }
 
+.no-margin {
+  margin: 0px;
+}
+
+.no-padding {
+  margin: 0px;
+}
+
+.big-padding {
+  margin: 0px;
+}
+
+.large-padding {
+  padding: 10px 15px;
+}
+
+.no-transform {
+  text-transform: none;
+}
+

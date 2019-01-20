@@ -11,12 +11,12 @@ class Product extends Model
 
     }
 
-    public function paypalItem(){
+    public function paypalItem($product){
       return \PaypalPayment::item()
-              ->setName($this->title)
-              ->setDescription($this->description)
+              ->setName($product->titulo)
+              ->setDescription($product->descripcion)
               ->setCurrency('USD')
               ->setQuantity(1)
-              ->setPrice($this->pricing);
+              ->setPrice($product->precio/100);
     }
 }
