@@ -37,7 +37,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        // $this->middleware('guest');//redirecciona a home si el usuario ya esta logeado
+        $this->middleware('first.user');// crear cuentas si ya estamos registrados
     }
 
     /**

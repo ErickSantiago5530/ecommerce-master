@@ -7,6 +7,10 @@ use App\Order;
 
 class OrdersController extends Controller
 {
+
+    public function __construct(){
+      $this->middleware("auth");// si no se encuentra logueado el usuario automaticamente lo redireccionara a login
+    }
     /**
      * Display a listing of the resource.
      *

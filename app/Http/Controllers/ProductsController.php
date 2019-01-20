@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
+    public function __construct(){
+      $this->middleware("auth",["except"=>"show"]);// si no se encuentra logueado el usuario automaticamente lo redireccionara a login
+    }
     /**
      * Display a listing of the resource.
      *

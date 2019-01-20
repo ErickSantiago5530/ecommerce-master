@@ -8,25 +8,28 @@ use App\PayPal;
 
 class ShoppingCartsController extends Controller
 {
+    public function __construct(){
+        $this->middleware("shoppingcart");
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      $shopping_cart_id = \Session::get('shopping_cart_id');
-      $shopping_cart = ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
-      $paypal = new PayPal($shopping_cart);
+      $shopping_cart = $request->shopping_cart;
+      // $shopping_cart_id = \Session::get('shopping_cart_id');
+      // $shopping_cart = ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
 
+      // $paypal = new PayPal($shopping_cart);
+      // $payment = $paypal->generate();
+      // return redirect($payment->getApprovalLink());sss
 
-      $payment = $paypal->generate();
-
-      return redirect($payment->getApprovalLink());
-      // $products = $shopping_cart->products()->get();
-      // $total = ($shopping_cart->total()==="0"||$shopping_cart->total()===0)?"0.00":$shopping_cart->total();
-      // // var_dump($total);die();
-      // return view("shopping_carts.index",["products"=>$products,"total"=>$total]);
+      $products = $shopping_cart->products()->get();
+      $total = ($shopping_cart->total()==="0"||$shopping_cart->total()===0)?"0.00":$shopping_cart->total();
+      // var_dump($total);die();
+      return view("shopping_carts.index",["products"=>$products,"total"=>$total]);
     }
 
     /**

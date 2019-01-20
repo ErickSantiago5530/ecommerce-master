@@ -9,12 +9,14 @@ use App\Order;
 
 class PaymentsController extends Controller
 {
+    public function __construct(){
+        $this->middleware("shoppingcart");
+    }
     //
     public function store(Request $request){
 
       /*Vamos a obtener de vuelta nuestro carrito de compras*/
-      $shopping_cart_id = \Session::get('shopping_cart_id');
-      $shopping_cart = ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
+      $shopping_cart = $request->shopping_cart;
 
       /*Instanciamos Paypal por que va a ser el encargado de ejecutar el cobro*/
       $paypal = new PayPal($shopping_cart);
