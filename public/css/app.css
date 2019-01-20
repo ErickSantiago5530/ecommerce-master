@@ -10470,6 +10470,18 @@ a.text-dark:focus {
   margin-bottom: 0px;
 }
 
+.sale-data {
+  padding: 1em;
+  text-align: center;
+  border-right: solid 1px #222;
+}
+
+.sale-data span {
+  display: block;
+  font-size: 2.2em;
+  color: #3f51b5;
+}
+
 .top-space {
   margin-top: 1em;
 }

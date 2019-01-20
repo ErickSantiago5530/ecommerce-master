@@ -33,3 +33,7 @@ Route::resource('compras','ShoppingCartsController',[
 Route::resource('in_shopping_carts','InShoppingCartsController',[
   'only' => ['store','destroy']
 ]);
+
+Route::resource('orders','OrdersController',[
+  'only' => ['index','update']
+]);
