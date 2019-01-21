@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ShoppingCart;
 use App\PayPal;
+use App\Order;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderCreated;
@@ -22,14 +23,14 @@ class ShoppingCartsController extends Controller
     public function index(Request $request)
     {
 
-      Mail::to("santossantiagoerick@gmail.com")->send(new OrderCreated());
       $shopping_cart = $request->shopping_cart;
       // $shopping_cart_id = \Session::get('shopping_cart_id');
       // $shopping_cart = ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
-
+      $order = Order::all()->last();
+      $order->sendMail();
       // $paypal = new PayPal($shopping_cart);
       // $payment = $paypal->generate();
-      // return redirect($payment->getApprovalLink());sss
+      // return redirect($payment->getApprovalLink());
 
       $products = $shopping_cart->products()->get();
       $total = ($shopping_cart->total()==="0"||$shopping_cart->total()===0)?"0.00":$shopping_cart->total();

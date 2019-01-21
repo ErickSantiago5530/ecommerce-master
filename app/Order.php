@@ -4,10 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderCreated;
+
 class Order extends Model
 {
     //
     protected $fillable = ['recipient_name','line1','line2','city','country_code','state','postal_code','total','email','shopping_cart_id','status'];
+
+    public function sendMail(){
+      Mail::to("santossantiagoerick@gmail.com")->send(new OrderCreated($this));
+
+    }
 
     public function scopeLatest($query){
       return $query->orderID()->monthly();
@@ -27,6 +35,10 @@ class Order extends Model
 
     public static function totalMonthCount(){
       return Order::monthly()->count(); //total del mes
+    }
+
+    public function shopping_cart(){
+      return $this->belongsTo('App\ShoppingCart');
     }
 
     public function address(){
