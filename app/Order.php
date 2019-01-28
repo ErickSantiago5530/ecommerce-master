@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderCreated;
+use App\Mail\OrderUpdated;
 
 class Order extends Model
 {
@@ -15,6 +16,14 @@ class Order extends Model
     public function sendMail(){
       Mail::to("santossantiagoerick@gmail.com")->send(new OrderCreated($this));
 
+    }
+
+    public function sendUpdateMail(){
+      Mail::to("santossantiagoerick@gmail.com")->send(new OrderUpdated($this));
+    }
+
+    public function shoppingCartID(){
+      return $this->shopping_cart()->customid;
     }
 
     public function scopeLatest($query){

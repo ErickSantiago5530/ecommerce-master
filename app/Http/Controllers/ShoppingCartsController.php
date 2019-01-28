@@ -27,7 +27,7 @@ class ShoppingCartsController extends Controller
       // $shopping_cart_id = \Session::get('shopping_cart_id');
       // $shopping_cart = ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
       $order = Order::all()->last();
-      $order->sendMail();
+      $order->sendUpdateMail();
       // $paypal = new PayPal($shopping_cart);
       // $payment = $paypal->generate();
       // return redirect($payment->getApprovalLink());

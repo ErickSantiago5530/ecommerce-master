@@ -403,9 +403,9 @@
                                                     <tr>
                                                         <td valign="top" class="bodyContent">
                                                             <div mc:edit="std_content00">
-                                                                <h1 class="h1">Recibo de tu pago en Ecommerce-Master</h1>
+                                                                <h1 class="h1">Nueva informacion de tu pedido Ecommerce-Master</h1>
 
-                                                                <strong>Hola: {{$order->email}}</strong> Transactional emails serve a defined and simple purpose. They differ from traditional mass-emails because they're generally sent on a user-by-user basis, instead of large list of users, and are generally used to deliver purchase receipts, account updates, security notifications, and more.
+                                                                <strong>Hola: {{$order->email}}</strong>Se actualizo la informacion de tu pedido
                                                             </div>
 														</td>
                                                     </tr>
@@ -414,30 +414,44 @@
                                                           <table border="0" cellpadding="10" cellspacing="0" width="100%" class="templateDataTable">
                                                               <tr>
                                                                   <th scope="col" valign="top" width="25%" class="dataTableHeading" mc:edit="data_table_heading00">
-                                                                    PRODUCTO
+                                                                    INFORMACION
                                                                   </th>
                                                                   <th scope="col" valign="top" width="25%" class="dataTableHeading" mc:edit="data_table_heading01">
-                                                                    PRECIO
+                                                                    ESTADO
                                                                   </th>
 
                                                               </tr>
-                                                              @foreach($products as $product)
 
                                                               <tr mc:repeatable>
                                                                   <td valign="top" class="dataTableContent" mc:edit="data_table_content00">
-                                                                    {{ $product->titulo}}
+                                                                    Número de guia:
                                                                   </td>
                                                                   <td valign="top" class="dataTableContent" mc:edit="data_table_content01">
-                                                                    {{ $product->precio}}
+                                                                    {{ $order->guide_number}}
                                                                   </td>
                                                               </tr>
-                                                              @endforeach
                                                               <tr mc:repeatable>
                                                                   <td valign="top" class="dataTableContent" mc:edit="data_table_content00">
-                                                                    Total:
+                                                                    Estado:
                                                                   </td>
                                                                   <td valign="top" class="dataTableContent" mc:edit="data_table_content01">
-                                                                    {{ $order->total}}
+                                                                    {{ $order->status}}
+                                                                  </td>
+                                                              </tr>
+                                                              <tr mc:repeatable>
+                                                                  <td valign="top" class="dataTableContent" mc:edit="data_table_content00">
+                                                                    Dirección:
+                                                                  </td>
+                                                                  <td valign="top" class="dataTableContent" mc:edit="data_table_content01">
+                                                                    {{ $order->address()}}
+                                                                  </td>
+                                                              </tr>
+                                                              <tr mc:repeatable>
+                                                                  <td valign="top" class="dataTableContent" mc:edit="data_table_content00">
+                                                                    Nombre Recepción:
+                                                                  </td>
+                                                                  <td valign="top" class="dataTableContent" mc:edit="data_table_content01">
+                                                                    {{ $order->recipient_name()}}
                                                                   </td>
                                                               </tr>
                                                           </table>
@@ -464,6 +478,12 @@
                                         </tr>
                                     </table>
                                     <!-- // End Template Body \\ -->
+                                </td>
+                                <td valign="top" class="bodyContent">
+                                  <div mc:edit="std_content01">
+                                    SI ALGÚN DATO ESTÁ ERRONEO, COMUNICATE A
+                                    <a href="mailto:Support@trizenit.com">Support@trizenit.com</a>
+                                  </div>
                                 </td>
                             </tr>
                         	<tr>
