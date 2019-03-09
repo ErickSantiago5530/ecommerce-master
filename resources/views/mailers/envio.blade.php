@@ -451,7 +451,7 @@
                                                                     Nombre Recepción:
                                                                   </td>
                                                                   <td valign="top" class="dataTableContent" mc:edit="data_table_content01">
-                                                                    {{ $order->recipient_name()}}
+                                                                    {{ $order->recipient_name}}
                                                                   </td>
                                                               </tr>
                                                           </table>

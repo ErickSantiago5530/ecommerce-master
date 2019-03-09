@@ -21,8 +21,6 @@ class OrdersController extends Controller
       $orders = Order::latest()->get();
       $totalMonth = Order::totalMonth();
       $totalMonthCount = Order::totalMonthCount();
-      // dd($totalMonth);
-      // dd($totalMonthCount);
       return view("orders.index",['orders'=>$orders,'totalMonth'=>$totalMonth,"totalMonthCount"=>$totalMonthCount]);
     }
 
