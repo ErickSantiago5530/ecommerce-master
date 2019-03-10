@@ -22,7 +22,7 @@
       <div class="actions">
         <div class="row right-text">
           <div class="col-sm-1 col-xs-3 ">
-            <a class="btn btn-warning btn-sm" href="{{ url('products/'.$product->id.'/edit') }}">Editar</a>
+            <a class="btn btn-warning btn-xs" href="{{ url('products/'.$product->id.'/edit') }}"><i class="fas fa-edit"></i></a>
           </div>
           <div class="col-sm-1 col-xs-3">
             @include('products.delete',['product'=>$product])

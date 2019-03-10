@@ -43,12 +43,23 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+      $hasFile  = $request->hasFile('cover')&& $request->cover->isValid();
       $product = new Product;
       $product->titulo = $request->titulo;
       $product->precio = $request->precio;
       $product->descripcion = $request->descripcion;
       $product->id_usuario = Auth::user()->id;
+
+      if ($hasFile) {
+        $extension = $request->cover->extension();//devuelve la extension que queremos subir
+      }
+
       if($product->save()){
+        if ($hasFile) {
+          //la imagen se guardara en una carpeta temp llamada images con el nombre $id.$extension
+          $request->cover->storeAs('images',$product->id.".".$extension);
+        }
+
         return redirect("/products");
       }else{
         return view("products.create",['product'=>$product]);

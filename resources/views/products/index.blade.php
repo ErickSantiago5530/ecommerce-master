@@ -26,12 +26,15 @@
           <td>
             <div class="row">
               <div class="col-sm-2 col-xs-3">
-                <a class="btn btn-warning btn-sm" href="{{ url('products/'.$product->id.'/edit') }}">Editar</a>
+                <a class="btn btn-primary btn-xs" href="{{ url('products/'.$product->id) }}"><i class="fas fa-eye"></i></a>
+              </div>
+              <div class="col-sm-2 col-xs-3">
+                <a class="btn btn-warning btn-xs" href="{{ url('products/'.$product->id.'/edit') }}"><i class="fas fa-edit"></i></a>
               </div>
               <div class="col-sm-2 col-xs-3">
                 @include('products.delete',['product'=>$product])
               </div>
-            </div> 
+            </div>
           </td>
         </tr>
       @endforeach
