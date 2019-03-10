@@ -8,7 +8,9 @@
     <h1>{{ $product->titulo }}</h1>
     <div class="row">
       <div class="col-sm-6 col-xs-12">
-
+        @if($product->extension)
+          <img src="" alt="">
+        @endif
       </div>
       <div class="col-sm-6 col-xs-12">
         <p>Descripcion</p>
