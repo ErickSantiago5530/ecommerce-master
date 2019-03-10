@@ -20,7 +20,6 @@ class PaymentsController extends Controller
 
       /*Instanciamos Paypal por que va a ser el encargado de ejecutar el cobro*/
       $paypal = new PayPal($shopping_cart);
-
       $res = $paypal->execute($request->paymentId,$request->PayerID);
       if ($res->state === "approved") {
 

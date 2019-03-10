@@ -27,7 +27,7 @@ class ShoppingCartsController extends Controller
       // $shopping_cart_id = \Session::get('shopping_cart_id');
       // $shopping_cart = ShoppingCart::findOrCreateBySessionID($shopping_cart_id);
       $order = Order::all()->last();
-      $order->sendUpdateMail();
+      // $order->sendUpdateMail();
       // $paypal = new PayPal($shopping_cart);
       // $payment = $paypal->generate();
       // return redirect($payment->getApprovalLink());
@@ -48,6 +48,12 @@ class ShoppingCartsController extends Controller
         //
     }
 
+    public function checkout(Request $request){
+      $shopping_cart = $request->shopping_cart;
+      $paypal = new PayPal($shopping_cart);
+      $payment = $paypal->generate();
+      return redirect($payment->getApprovalLink());
+    }
     /**
      * Store a newly created resource in storage.
      *
