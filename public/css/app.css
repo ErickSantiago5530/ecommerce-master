@@ -10466,6 +10466,10 @@ a.text-dark:focus {
   }
 }
 
+.products-container .product {
+  margin-top: 1em;
+}
+
 .navbar {
   margin-bottom: 0px;
 }
@@ -10484,6 +10488,10 @@ a.text-dark:focus {
 
 .top-space {
   margin-top: 1em;
+}
+
+.text-center {
+  margin: center;
 }
 
 .creado {
@@ -10553,5 +10561,10 @@ a.text-dark:focus {
 
 .no-transform {
   text-transform: none;
+}
+
+.product-avatar {
+  width: 230px;
+  height: 180px;
 }
 

@@ -26,7 +26,17 @@ Route::get('/products/{id}', 'ProductsController@show');//muestra detalles produ
 Route::get('/carrito','ShoppingCartsController@index');
 Route::post('/carrito','ShoppingCartsController@checkout');
 Route::get('/payments/store','PaymentsController@store');
+Route::get('products/images/{filename}',function($filename){
+  $path = storage_path("app/images/".$filename);
+  if (!\File::exists($path)) abort(404);
+  $file = \File::get($path); //obtener nombre imagen
+  $type = \File::mimeType($path); //obtener la extension de la imagen
 
+  $response = Response::make($file,200);
+  $response->header("Content-Type",$type);
+
+  return $response;
+});
 Route::resource('compras','ShoppingCartsController',[
   'only' => ['show']
 ]);

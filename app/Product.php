@@ -11,6 +11,10 @@ class Product extends Model
 
     }
 
+    public function scopeLatest($query){
+      return $query->orderBy("id","desc");
+    }
+
     public function paypalItem($product){
       return \PaypalPayment::item()
               ->setName($product->titulo)
