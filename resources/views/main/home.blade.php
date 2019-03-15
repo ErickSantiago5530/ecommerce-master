@@ -9,9 +9,9 @@
           @include("products.product",["product"=>$product])
         </div>
       @endforeach
-      <div>
-        {{ $products->links() }}
-      </div>
+    </div>
+    <div class="center-text">
+      {{ $products->links() }}
     </div>
   </div>
 @endsection

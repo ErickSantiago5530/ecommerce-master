@@ -10466,6 +10466,12 @@ a.text-dark:focus {
   }
 }
 
+.circle-shopping-cart {
+  background-color: #EBEDDB;
+  border-radius: 50%;
+  padding: 0.5em 0.5em;
+}
+
 .products-container .product {
   margin-top: 1em;
 }
